@@ -1,0 +1,50 @@
+https://jjasonclark.com/how-to-setup-node-behind-web-proxy/
+npm config set proxy http://proxy.company.com:8080
+npm config set https-proxy http://proxy.company.com:8080
+
+https://docs.npmjs.com/cli/config
+https://docs.npmjs.com/misc/config
+
+
+https://nodejs.org/es/
+8.12
+
+npm
+https://www.npmjs.com/
+https://docs.npmjs.com/
+
+npm install npm@latest -g
+
+https://cli.angular.io/
+https://github.com/angular/angular-cli/wiki
+
+npm install -g @angular/cli@latest
+
+npm uninstall -g angular-cli
+npm cache clean or npm cache verify (if npm > 5)
+npm install -g @angular/cli@latest
+
+ng n cityInfo
+
+code .
+
+
+https://stackoverflow.com/questions/50290197/how-to-add-bootstrap-in-angular-6-project
+
+https://getbootstrap.com
+
+Execute npm install bootstrap
+In src/styles.css add the following line:
+
+@import "~bootstrap/dist/css/bootstrap.css";
+
+----------------------
+backend
+
+dotnet ef database update  -p CityInfo.DataAccess -s CityInfo.API
+
+in path AN-N6A_TEC-Angular\Backend\CityInfo.API run:
+
+dotnet run CityInfo.API
+
+

@@ -1,0 +1,28 @@
+<p>
+  test works!
+</p>
+
+<div class="container">
+
+
+  <div class="row">
+    <!-- <div class="col-3"> {{default}} </div> -->
+    <div class="col-3"> {{ name ? name : 'No Name' }} </div>
+
+    <div class="col-3">
+      <label>Introduce Name</label>
+      <input [(ngModel)]="name">
+    </div>
+    <div class="col-3">
+      <label>Introduce Name</label>
+      <input type="text" [value]="name">
+    </div>
+  </div>
+
+  <div class="row">
+    <button class="btn btn-primary btn-lg" (click)="updateText($event)">Update</button>
+    <button class="btn btn-secondary" (click)="resetText($event)">Reset</button>
+    <button class="btn btn-secondary" (click)="getCities()">Cities</button>
+  </div>
+
+</div>
