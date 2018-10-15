@@ -1,3 +1,12 @@
+links
+--------------------------------------------------------------
+https://github.com/Sactos/HomeworksApi/blob/master/Clases/Clase%208%20-%20Angular%20y%20las%20SPAs.md
+
+https://github.com/ORT-DA2/Clase-9-Angular-Parte-2
+https://github.com/ORT-DA2/Clase-10-Angular-Parte-3
+https://github.com/ORT-DA2/Clase-11-Angular-Parte-4
+--------------------------------------------------------------
+
 https://jjasonclark.com/how-to-setup-node-behind-web-proxy/
 npm config set proxy http://proxy.company.com:8080
 npm config set https-proxy http://proxy.company.com:8080
