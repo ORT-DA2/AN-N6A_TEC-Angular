@@ -18,8 +18,13 @@ export class CityService {
 
   constructor(private http: HttpClient) { }
 
-  getHeroes(): Observable<City[]> {
+  getCities(): Observable<City[]> {
     return this.http.get<City[]>(`http://localhost:5000/api/cities`, { headers: this.headers });
+  }
+
+
+  getCityImage(cityId: number): Observable<City[]> {
+    return this.http.get<any>(`http://localhost:5000/api/cityImage/${cityId}`, { headers: this.headers });
   }
 
 }

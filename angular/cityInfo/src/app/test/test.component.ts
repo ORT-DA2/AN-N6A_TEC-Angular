@@ -11,6 +11,7 @@ export class TestComponent implements OnInit {
   name: string;
   default: string;
   today: Date;
+  image = 'http://localhost:5000/api/cityImage/1';
 
   constructor(private cityService: CityService) {
     this.default = 'Default';
@@ -32,7 +33,7 @@ export class TestComponent implements OnInit {
   }
 
   getCities() {
-    this.cityService.getHeroes().subscribe(response => {
+    this.cityService.getCities().subscribe(response => {
       console.log(response);
     });
   }

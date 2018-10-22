@@ -1,0 +1,27 @@
+<p>
+    {{ cities | json }}
+</p>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Cities</th>
+                <th scope="col">Description</th>
+                <th scope="col">Places</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let city of cities">
+                <td>{{ city.name }}</td>
+                <td>{{ city.description | description : 50 }}</td>
+                <td>{{ city.numberOfPointsOfInterest }}</td>
+                <td>
+                    <input type="button" (click)="selectCity($event, city)" value="Edit" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<app-city-form *ngIf="isFormActive" (closeRequested)="closeForm($event)" [city]="selectedCity"></app-city-form>
