@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CityInfo.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,19 +114,32 @@ namespace CityInfo.DataAccess.Migrations
                 columns: new[] { "Id", "Role" },
                 values: new object[,]
                 {
-                    { new Guid("d48cd89b-a7d9-4823-8cce-dddbe9b97356"), "Admin" },
-                    { new Guid("6f5ca935-11d3-4ee2-9b9c-d767f6da8ed8"), "User" }
+                    { new Guid("ab7f044d-03c5-4b4f-8420-64c5afb43f8d"), "Admin" },
+                    { new Guid("399e2aa6-88ad-439a-aaa8-cec92bf89cf0"), "User" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PointsOfInterest",
+                columns: new[] { "Id", "CityId", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 10, 1, "Welcome to point 10", "Point 10" },
+                    { 11, 1, "Welcome to point 11", "Point 11" },
+                    { 12, 1, "Welcome to point 12", "Point 12" },
+                    { 13, 2, "Welcome to point 13", "Point 13" },
+                    { 14, 2, "Welcome to point 14", "Point 14" },
+                    { 15, 2, "Welcome to point 15", "Point 15" },
+                    { 16, 3, "Welcome to point 16", "Point 16" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Name", "Password", "SessionId", "UserName" },
-                values: new object[] { 1, "Juan", "pwd", new Guid("d48cd89b-a7d9-4823-8cce-dddbe9b97356"), "juan89" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Name", "Password", "SessionId", "UserName" },
-                values: new object[] { 2, "Joe", "pass", new Guid("6f5ca935-11d3-4ee2-9b9c-d767f6da8ed8"), "joe123" });
+                values: new object[,]
+                {
+                    { 1, "Juan", "pwd", new Guid("ab7f044d-03c5-4b4f-8420-64c5afb43f8d"), "juan89" },
+                    { 2, "Joe", "pass", new Guid("399e2aa6-88ad-439a-aaa8-cec92bf89cf0"), "joe123" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_ImageId",

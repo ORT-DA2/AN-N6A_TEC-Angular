@@ -15,14 +15,14 @@ namespace CityInfo.API.Controllers
             this.cityService = service;
         }
 
-        
+
         [HttpGet()]
         public IActionResult GetCities([FromQuery] string name)
         {
             return Ok(this.cityService.GetCities(name));
         }
 
-       
+
         // set proper status code when not found
         [HttpGet("{id}")]
         public IActionResult GetCity(int id)
@@ -38,10 +38,26 @@ namespace CityInfo.API.Controllers
             // IActionResult allows us to return other format types, not only json
         }
 
-        public void Post(CityDto dto)
+        [HttpPost]
+        public void Post([FromBody]CityDto dto)
         {
             this.ValidateToken("Admin");
             this.cityService.Save(new Contracts.Services.Entities.City { Name = dto.Name, Description = dto.Description });
+        }
+
+        [HttpPut]
+        public void Put([FromBody]CityDto dto)
+        {
+            this.ValidateToken("Admin");
+            this.cityService.Save(new Contracts.Services.Entities.City { Id = dto.Id, Name = dto.Name, Description = dto.Description });
+        }
+
+        [HttpDelete("{cityId}")]
+        public void Delete(int cityId)
+        {
+            this.ValidateToken("Admin");
+
+            this.cityService.Delete(cityId);
         }
 
     }

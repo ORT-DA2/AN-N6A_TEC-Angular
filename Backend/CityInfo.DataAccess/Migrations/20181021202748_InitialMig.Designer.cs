@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CityInfo.DataAccess.Migrations
 {
     [DbContext(typeof(CityInfoContext))]
-    [Migration("20180924195754_Initial")]
-    partial class Initial
+    [Migration("20181021202748_InitialMig")]
+    partial class InitialMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -81,6 +81,16 @@ namespace CityInfo.DataAccess.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("PointsOfInterest");
+
+                    b.HasData(
+                        new { Id = 10, CityId = 1, Description = "Welcome to point 10", Name = "Point 10" },
+                        new { Id = 11, CityId = 1, Description = "Welcome to point 11", Name = "Point 11" },
+                        new { Id = 12, CityId = 1, Description = "Welcome to point 12", Name = "Point 12" },
+                        new { Id = 13, CityId = 2, Description = "Welcome to point 13", Name = "Point 13" },
+                        new { Id = 14, CityId = 2, Description = "Welcome to point 14", Name = "Point 14" },
+                        new { Id = 15, CityId = 2, Description = "Welcome to point 15", Name = "Point 15" },
+                        new { Id = 16, CityId = 3, Description = "Welcome to point 16", Name = "Point 16" }
+                    );
                 });
 
             modelBuilder.Entity("CityInfo.Contracts.Services.Entities.Session", b =>
@@ -95,8 +105,8 @@ namespace CityInfo.DataAccess.Migrations
                     b.ToTable("Sessions");
 
                     b.HasData(
-                        new { Id = new Guid("d48cd89b-a7d9-4823-8cce-dddbe9b97356"), Role = "Admin" },
-                        new { Id = new Guid("6f5ca935-11d3-4ee2-9b9c-d767f6da8ed8"), Role = "User" }
+                        new { Id = new Guid("ab7f044d-03c5-4b4f-8420-64c5afb43f8d"), Role = "Admin" },
+                        new { Id = new Guid("399e2aa6-88ad-439a-aaa8-cec92bf89cf0"), Role = "User" }
                     );
                 });
 
@@ -121,8 +131,8 @@ namespace CityInfo.DataAccess.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, Name = "Juan", Password = "pwd", SessionId = new Guid("d48cd89b-a7d9-4823-8cce-dddbe9b97356"), UserName = "juan89" },
-                        new { Id = 2, Name = "Joe", Password = "pass", SessionId = new Guid("6f5ca935-11d3-4ee2-9b9c-d767f6da8ed8"), UserName = "joe123" }
+                        new { Id = 1, Name = "Juan", Password = "pwd", SessionId = new Guid("ab7f044d-03c5-4b4f-8420-64c5afb43f8d"), UserName = "juan89" },
+                        new { Id = 2, Name = "Joe", Password = "pass", SessionId = new Guid("399e2aa6-88ad-439a-aaa8-cec92bf89cf0"), UserName = "joe123" }
                     );
                 });
 
@@ -136,7 +146,7 @@ namespace CityInfo.DataAccess.Migrations
             modelBuilder.Entity("CityInfo.Contracts.Services.Entities.PointOfInterest", b =>
                 {
                     b.HasOne("CityInfo.Contracts.Services.Entities.City", "City")
-                        .WithMany()
+                        .WithMany("PointsOfInterest")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

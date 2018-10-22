@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CityInfo.API.Controllers;
+using CityInfo.Contracts.DataAccess;
 using CityInfo.Contracts.Services;
 using CityInfo.Contracts.Services.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,8 @@ namespace CityInfo.Test
         public void TestGetCitiesShouldReturnOK()
         {
             var mock = new Mock<ICityService>();
-            var sut = new CitiesController(mock.Object);
+            var mockSession = new Mock<ISessionRepository>();
+            var sut = new CitiesController(mockSession.Object, mock.Object);
 
             var response = sut.GetCities(null);
 
@@ -41,7 +43,8 @@ namespace CityInfo.Test
         public void TestGetCitiesShouldReturnOKFailsCauseMockBehaviorStrict()
         {
             var mock = new Mock<ICityService>(MockBehavior.Strict);
-            var sut = new CitiesController(mock.Object);
+            var mockSession = new Mock<ISessionRepository>();
+            var sut = new CitiesController(mockSession.Object, mock.Object);
 
             var response = sut.GetCities(null);
 
@@ -55,7 +58,8 @@ namespace CityInfo.Test
             var mock = new Mock<ICityService>(MockBehavior.Strict);
             mock.Setup(m => m.GetCities(It.IsAny<string>())).Returns(new List<City> { new City(), new City() });
 
-            var sut = new CitiesController(mock.Object);
+            var mockSession = new Mock<ISessionRepository>();
+            var sut = new CitiesController(mockSession.Object, mock.Object);
             var inputValue = "randomValue since it expect any string value, even null";
 
             var response = sut.GetCities(inputValue);

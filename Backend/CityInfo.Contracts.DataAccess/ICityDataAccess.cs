@@ -13,5 +13,7 @@ namespace CityInfo.Contracts.DataAccess
 
         void Add(City city);
 
+        void Remove(int cityId);
+
     }
 }

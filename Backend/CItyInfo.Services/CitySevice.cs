@@ -27,12 +27,17 @@ namespace CItyInfo.Services
 
             return !string.IsNullOrEmpty(name) ?
                 cities.Where(city => city.Name.Contains(name, StringComparison.InvariantCultureIgnoreCase)) :
-                cities;
+                cities.ToList();
         }
 
         public void Save(City city)
         {
             this.storage.Add(city);
+        }
+
+        public void Delete(int cityId)
+        {
+            this.storage.Remove(cityId);
         }
     }
 }

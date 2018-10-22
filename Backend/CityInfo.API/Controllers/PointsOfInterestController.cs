@@ -81,17 +81,15 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            var maxPointOfInterestId =
-                this.context.Cities.SelectMany(c => c.PointsOfInterest).Max(p => p.Id);
-
             var finalPointOfInterest = new PointOfInterestDto()
             {
-                Id = ++maxPointOfInterestId,
                 Name = pointOfInterest.Name,
                 Description = pointOfInterest.Description
             };
 
             city.PointsOfInterest.Add(finalPointOfInterest.ToEntity());
+
+            this.context.SaveChanges();
 
             return CreatedAtRoute(
                 "GetPointOfInterest",

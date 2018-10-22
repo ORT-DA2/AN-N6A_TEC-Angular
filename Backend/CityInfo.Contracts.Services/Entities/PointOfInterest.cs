@@ -15,14 +15,6 @@ namespace CityInfo.Contracts.Services.Entities
         //[Required]
         public string Name { get; set; }
 
-        //[ForeignKey("CityId")]
-        public City City { get; set; } // here will be consider as navigation property since we are follow the convention
-
-        /* By convention:
-         a relation will be created when there is a navigation property discovered on a type. 
-         And a property is considered a navigation property if the type it points cannot be mapped to a scalar type by the current database provider 
-         */
-
         public int CityId { get; set; }
 
         

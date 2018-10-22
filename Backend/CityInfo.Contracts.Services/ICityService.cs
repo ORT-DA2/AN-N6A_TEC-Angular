@@ -10,5 +10,7 @@ namespace CityInfo.Contracts.Services
         IEnumerable<City> GetCities(string name);
 
         void Save(City city);
+
+        void Delete(int cityId);
     }
 }
