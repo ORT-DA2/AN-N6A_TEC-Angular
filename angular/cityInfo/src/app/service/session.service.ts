@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 const tokenKey = 'currentToken';
 
@@ -6,6 +7,7 @@ const tokenKey = 'currentToken';
 export class SessionService {
 
     private currentToken: string;
+    tokenChanged = new Subject<string>();
     constructor() { }
 
     isAuthenticated(): boolean {
@@ -14,6 +16,7 @@ export class SessionService {
 
     setToken(token: string): void {
         this.currentToken = token;
+        // this.tokenChanged.next(token);
     }
 
     removeToken(): void {

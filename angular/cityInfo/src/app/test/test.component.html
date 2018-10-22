@@ -23,8 +23,17 @@
         <button class="btn btn-primary btn-lg" (click)="updateText($event)">Update</button>
         <button class="btn btn-secondary" (click)="resetText($event)">Reset</button>
         <button class="btn btn-secondary" (click)="getCities()">Cities</button>
+        <button class="btn btn-secondary" (click)="gotoLogin()">Goto Login</button>
+        <button class="btn btn-secondary" (click)="displaySessionToken()">Get Token</button>
     </div>
 
-    <img [src]="image" class="img-thumbnail">
+    <div class="row">
+         {{token}}
+    </div>
+
+    <div class="row">
+        <img [src]="image" class="img-thumbnail">
+    </div>
+    
 
 </div>
