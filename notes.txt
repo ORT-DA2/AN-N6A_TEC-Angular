@@ -27,7 +27,7 @@ npm install npm@latest -g
 https://cli.angular.io/
 https://github.com/angular/angular-cli/wiki
 
-npm install -g @angular/cli@latest
+npm install -g @angular/cli@6.1.1
 
 npm uninstall -g angular-cli
 npm cache clean or npm cache verify (if npm > 5)
