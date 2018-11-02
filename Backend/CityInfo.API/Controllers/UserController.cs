@@ -1,5 +1,4 @@
-﻿using System;
-using CityInfo.API.Models;
+﻿using CityInfo.API.Models;
 using CityInfo.Contracts.DataAccess;
 using CityInfo.Contracts.Services;
 using Microsoft.AspNetCore.Mvc;

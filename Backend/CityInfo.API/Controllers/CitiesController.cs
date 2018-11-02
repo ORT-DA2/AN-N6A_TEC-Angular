@@ -1,5 +1,4 @@
-﻿using CityInfo.API.Filters;
-using CityInfo.API.Models;
+﻿using CityInfo.API.Models;
 using CityInfo.Contracts.DataAccess;
 using CityInfo.Contracts.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +18,8 @@ namespace CityInfo.API.Controllers
         [HttpGet()]
         public IActionResult GetCities([FromQuery] string name)
         {
-            return Ok(this.cityService.GetCities(name));
+            var result = this.ValidateToken("User");
+            return result ?? Ok(this.cityService.GetCities(name));
         }
 
 
@@ -27,6 +27,9 @@ namespace CityInfo.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCity(int id)
         {
+            var result = this.ValidateToken("User");
+            if (result != null) return result;
+
             var cityMacth = this.cityService.GetCity(id);
 
             if (cityMacth == null)
@@ -41,23 +44,32 @@ namespace CityInfo.API.Controllers
         [HttpPost]
         public void Post([FromBody]CityDto dto)
         {
-            this.ValidateToken("Admin");
-            this.cityService.Save(new Contracts.Services.Entities.City { Name = dto.Name, Description = dto.Description });
+            var result = this.ValidateToken("Admin");
+            if (result == null)
+            {
+                this.cityService.Save(new Contracts.Services.Entities.City { Name = dto.Name, Description = dto.Description });
+            }
+
         }
 
         [HttpPut]
         public void Put([FromBody]CityDto dto)
         {
-            this.ValidateToken("Admin");
-            this.cityService.Save(new Contracts.Services.Entities.City { Id = dto.Id, Name = dto.Name, Description = dto.Description });
+            var result = this.ValidateToken("Admin");
+            if (result == null)
+            {
+                this.cityService.Save(new Contracts.Services.Entities.City { Id = dto.Id, Name = dto.Name, Description = dto.Description });
+            }
         }
 
         [HttpDelete("{cityId}")]
         public void Delete(int cityId)
         {
-            this.ValidateToken("Admin");
-
-            this.cityService.Delete(cityId);
+            var result = this.ValidateToken("Admin");
+            if (result == null)
+            {
+                this.cityService.Delete(cityId);
+            }
         }
 
     }

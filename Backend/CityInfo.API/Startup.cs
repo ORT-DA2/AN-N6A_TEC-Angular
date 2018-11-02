@@ -41,17 +41,6 @@ namespace CityInfo.API
 
             // add asp net core mvc
             services.AddMvc(o => o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter()));
-            
-            //services.AddMvc().AddJsonOptions(o =>
-            //{
-            //    if (o.SerializerSettings.ContractResolver != null)
-            //    {
-            //        var castedResolver = o.SerializerSettings.ContractResolver as DefaultContractResolver;
-            //        castedResolver.NamingStrategy = null; 
-            //        // overwriting defaul serilazier that set properties names as camel case (recommended for json)
-            //        // now, setting it to null, will return the property names as they are defined in the class
-            //    }
-            //});
 
 
             // methods for adding custom services
@@ -71,10 +60,7 @@ namespace CityInfo.API
             services.AddScoped<IUserService, UserService>();
            
 
-            services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=CityInfo;Trusted_Connection=True;"));
-
-            //Ejemplo de EF en Memoria
-            //services.AddDbContext<DomainContext>(options => options.UseInMemoryDatabase(Configuration.GetConnectionString("WACDatabase")
+            services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(@"Server=.;Database=CityInfo;Trusted_Connection=True;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,17 +73,11 @@ namespace CityInfo.API
                 app.UseDeveloperExceptionPage();
             }
 
-            // show message for 404 in the browser
             app.UseStatusCodePages();
 
             app.UseCors("CorsPolicy");
 
             app.UseMvc();
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
         }
     }
 }
