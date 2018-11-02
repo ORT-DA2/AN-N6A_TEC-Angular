@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../service/session.service';
-
-export interface Login {
-  username: string;
-  password: string;
-}
+import { UserService } from '../service/user.service';
+import { LoginRequest } from '../interfaces/login-request';
+import { Session } from '../interfaces/session';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,22 +12,29 @@ export interface Login {
 })
 export class LoginComponent implements OnInit {
 
-  model: Login;
+  model: LoginRequest;
   submitted: boolean;
 
-  constructor(private service: SessionService) {
-    this.model = { username: 'juan89', password: 'pwd' };
-    this.submitted = false;
+  constructor(
+    private sessionService: SessionService,
+    private userService: UserService,
+    private router: Router) {
+    this.model = { userName: '', password: '' };
   }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.service.setToken(`User: ${this.model.username}- Date: ${(new Date()).toLocaleString()}`);
+    // this.service.setToken(`User: ${this.model.userName}- Date: ${(new Date()).toLocaleString()}`);
 
-    console.log(JSON.stringify(this.model));
+    this.userService.postLogin(this.model).subscribe((response: Session) => {
+      this.sessionService.setSession(response);
+
+      if (this.sessionService.isAuthenticated) {
+        this.router.navigate([this.sessionService.attemptedUrl]);
+      }
+    });
   }
 
 }

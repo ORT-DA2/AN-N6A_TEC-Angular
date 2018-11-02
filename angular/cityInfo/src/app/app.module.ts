@@ -11,23 +11,35 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { CityModule } from './city/city.module';
 import { SessionService } from './service/session.service';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserService } from './service/user.service';
+import { BaseApiService } from './service/base-api.service';
+import { LayoutComponent } from './layout/layout.component';
+import { AuthenticationGuard } from './shared/authentication.guard';
 
 const appRoutes: Routes = [
-  { path: 'test', component: TestComponent },
-  { path: 'login', component: LoginComponent },
-  // { path: 'hero/:id',      component: HeroDetailComponent },
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
+  {
+    path: '', component: LayoutComponent,
+    canActivate: [AuthenticationGuard],
+    canActivateChild: [AuthenticationGuard],
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
+    ]
   },
-  // { path: '**', component: PageNotFoundComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    LayoutComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -41,7 +53,10 @@ const appRoutes: Routes = [
   ],
   providers: [
     CityService,
-    SessionService
+    SessionService,
+    UserService,
+    BaseApiService,
+    AuthenticationGuard
   ],
   bootstrap: [AppComponent]
 })
