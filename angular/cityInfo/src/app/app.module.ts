@@ -9,7 +9,7 @@ import { TestComponent } from './test/test.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { CityModule } from './city/city.module';
+// import { CityModule } from './city/city.module';
 import { SessionService } from './service/session.service';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -17,6 +17,7 @@ import { UserService } from './service/user.service';
 import { BaseApiService } from './service/base-api.service';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthenticationGuard } from './shared/authentication.guard';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const appRoutes: Routes = [
   {
@@ -25,11 +26,11 @@ const appRoutes: Routes = [
     canActivateChild: [AuthenticationGuard],
     children: [
       { path: 'home', component: HomeComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'city',
         loadChildren: './city/city.module#CityModule',
       },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
   { path: 'login', component: LoginComponent },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     PageNotFoundComponent,
-    LayoutComponent
+    LayoutComponent,
+    NavBarComponent
   ],
   imports: [
     RouterModule.forRoot(

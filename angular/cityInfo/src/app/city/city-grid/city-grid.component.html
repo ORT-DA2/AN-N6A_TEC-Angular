@@ -18,6 +18,7 @@
                 <td>{{ city.numberOfPointsOfInterest }}</td>
                 <td>
                     <input type="button" (click)="selectCity($event, city)" value="Edit" />
+                    <input type="button" (click)="deleteCity($event, city)" value="Delete" />
                 </td>
             </tr>
         </tbody>
