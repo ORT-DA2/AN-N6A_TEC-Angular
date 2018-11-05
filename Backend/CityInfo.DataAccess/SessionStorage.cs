@@ -23,11 +23,11 @@ namespace CityInfo.DataAccess
             return isValid && this.context.Sessions.Any(s => s.Id == parsedToken);
         }
 
-        public bool HasLevel(string token, string role)
+        public bool HasLevel(string token, string[] roles)
         {
-            var  guid = new Guid(token); 
+            var guid = new Guid(token);
             return this.context.Sessions.Any(s => s.Id == guid &&
-            s.Role.Equals(role, StringComparison.InvariantCultureIgnoreCase));
+            roles.Contains(s.Role, StringComparer.InvariantCultureIgnoreCase));
         }
     }
 }

@@ -6,6 +6,6 @@ namespace CityInfo.Contracts.DataAccess
     {
         bool IsValidToken(string token);
 
-        bool HasLevel(string token, string role);
+        bool HasLevel(string token, string[] roles);
     }
 }

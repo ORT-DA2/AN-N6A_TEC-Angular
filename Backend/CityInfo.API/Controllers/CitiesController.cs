@@ -27,7 +27,7 @@ namespace CityInfo.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCity(int id)
         {
-            var result = this.ValidateToken("User");
+            var result = this.ValidateToken("User", "Admin");
             if (result != null) return result;
 
             var cityMacth = this.cityService.GetCity(id);

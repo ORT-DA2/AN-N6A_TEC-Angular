@@ -39,7 +39,7 @@ namespace CityInfo.API.Filters
                     };
                 }
                 // CHECKEAMOS QUE EL TOKEN TENGA LOS PERMISOS NECESARIOS
-                if (!sessions.HasLevel(token, _role))
+                if (!sessions.HasLevel(token, new[] {_role}))
                 {
                     context.Result = new ContentResult()
                     {

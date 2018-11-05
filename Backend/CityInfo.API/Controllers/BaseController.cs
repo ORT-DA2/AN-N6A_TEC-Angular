@@ -11,7 +11,7 @@ namespace CityInfo.API.Controllers
             this.session = session;
         }
 
-        public IActionResult ValidateToken(string role)
+        public IActionResult ValidateToken(params string[] roles)
         {
             string token = this.HttpContext.Request.Headers["Authorization"];
             // VALIDAMOS EL TOKEN
@@ -20,9 +20,9 @@ namespace CityInfo.API.Controllers
                 return StatusCode(401, "Invalid Token");
             }
             // CHECKEAMOS QUE EL TOKEN TENGA LOS PERMISOS NECESARIOS
-            if (!session.HasLevel(token, role))
+            if (!session.HasLevel(token, roles))
             {
-                return StatusCode(403, $"The user is not {role}");
+                return StatusCode(403, $"The user is not allowed");
             }
 
             return null;
