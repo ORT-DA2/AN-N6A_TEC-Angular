@@ -1,13 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { City } from '../../service/city.service';
+import { City, CityService } from '../../service/city.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-city-form',
   templateUrl: './city-form.component.html',
   styleUrls: ['./city-form.component.css']
 })
-export class CityFormComponent implements OnChanges {
+export class CityFormComponent implements OnInit, OnChanges {
 
   cityForm: FormGroup;
   @Input() city: City;
@@ -15,7 +17,10 @@ export class CityFormComponent implements OnChanges {
 
   get name() { return this.cityForm.get('name'); }
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private cityService: CityService) {
     /*this.cityForm = new FormGroup({
       name: new FormControl(''),
       description: new FormControl('')
@@ -28,6 +33,21 @@ export class CityFormComponent implements OnChanges {
       pointOfInterest: []
     });
   }
+
+  ngOnInit() {
+    // from https://v6.angular.io/guide/router
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        // (+) before `params.get()` turns the string into a number
+        const cityId = +params.get('id');
+        console.log(`param id value: ${cityId}`);
+        return this.cityService.getCity(cityId);
+      })
+    ).subscribe(x => x ? this.updateForm(x) : this.cityForm.reset());
+
+    console.log(`Using snapshot : ${this.route.snapshot.paramMap.get('id')}`);
+  }
+
 
   /**
         [
@@ -57,6 +77,14 @@ export class CityFormComponent implements OnChanges {
   cancel() {
     this.cityForm.reset();
     this.closeRequested.emit(true);
+  }
+
+  updateForm(city: City) {
+    this.cityForm.patchValue({
+      id: city.id,
+      name: city.name,
+      description: city.description,
+    });
   }
 
 }

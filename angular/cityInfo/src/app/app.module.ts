@@ -25,7 +25,11 @@ const appRoutes: Routes = [
     canActivateChild: [AuthenticationGuard],
     children: [
       { path: 'home', component: HomeComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: 'city',
+        loadChildren: './city/city.module#CityModule',
+      },
     ]
   },
   { path: 'login', component: LoginComponent },
@@ -49,7 +53,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CityModule
+    // CityModule
   ],
   providers: [
     CityService,
