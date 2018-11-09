@@ -1,7 +1,4 @@
 <div class="container-fluid">
-  <app-nav-bar></app-nav-bar>
-  <router-outlet></router-outlet>
-  <!--<app-city-main></app-city-main>
-  <app-login></app-login>
-    <app-test></app-test> -->
+    <app-nav-bar *ngIf="sessionService.isAuthenticated()"></app-nav-bar>
+    <router-outlet></router-outlet>
 </div>
