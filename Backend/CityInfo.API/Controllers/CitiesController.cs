@@ -18,7 +18,7 @@ namespace CityInfo.API.Controllers
         [HttpGet()]
         public IActionResult GetCities([FromQuery] string name)
         {
-            var result = this.ValidateToken("User");
+            var result = this.ValidateToken("User", "Admin");
             return result ?? Ok(this.cityService.GetCities(name));
         }
 

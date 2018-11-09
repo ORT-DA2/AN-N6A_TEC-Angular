@@ -41,4 +41,8 @@ export class CityService {
     return this.http.get<any>(`http://localhost:5000/api/cityImage/${cityId}`, { headers: this.getHeader() });
   }
 
+  deleteCity(cityId: number): Observable<any> {
+    return this.http.delete(`http://localhost:5000/api/cities/${cityId}`, { headers: this.getHeader(), observe: 'response' });
+  }
+
 }

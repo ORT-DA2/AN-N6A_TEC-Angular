@@ -39,6 +39,10 @@ export class SessionService {
         localStorage.setItem('role', session.role);
     }
 
+    isAdmin(): boolean {
+        return localStorage.getItem('Role') === 'Admin';
+    }
+
     logOff() {
         localStorage.removeItem('token');
         localStorage.removeItem('role');

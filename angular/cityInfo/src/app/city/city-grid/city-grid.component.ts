@@ -16,6 +16,10 @@ export class CityGridComponent implements OnInit {
   constructor(private cityService: CityService) { }
 
   ngOnInit() {
+    this.updateGrid();
+  }
+
+  updateGrid(): void {
     this.cityService.getCities().subscribe(response => {
       this.cities = response;
     });
@@ -24,6 +28,13 @@ export class CityGridComponent implements OnInit {
   selectCity($event, city: City) {
     this.selectedCity = city;
     this.isFormActive = true;
+  }
+
+  deleteCity($event, city: City) {
+    this.cityService.deleteCity(city.id).subscribe(resp => {
+      console.log(JSON.stringify(resp));
+      this.updateGrid();
+    });
   }
 
   closeForm($event) {
