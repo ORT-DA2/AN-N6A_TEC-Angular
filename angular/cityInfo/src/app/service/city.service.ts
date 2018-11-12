@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { SessionService } from './session.service';
+import { environment } from '../../environments/environment';
 
 export interface City {
   id: number;
@@ -26,23 +27,23 @@ export class CityService {
   }
 
   getCities(): Observable<City[]> {
-    return this.http.get<City[]>(`http://localhost:5000/api/cities`, { headers: this.getHeader() });
+    return this.http.get<City[]>(`${environment.apiUrl}/cities`, { headers: this.getHeader() });
   }
 
   getCity(id: number): Observable<City> {
     if (id) {
-      return this.http.get<City>(`http://localhost:5000/api/cities/${id}`, { headers: this.getHeader() });
+      return this.http.get<City>(`${environment.apiUrl}/cities/${id}`, { headers: this.getHeader() });
     }
     return of(null);
   }
 
 
   getCityImage(cityId: number): Observable<City[]> {
-    return this.http.get<any>(`http://localhost:5000/api/cityImage/${cityId}`, { headers: this.getHeader() });
+    return this.http.get<any>(`${environment.apiUrl}/cityImage/${cityId}`, { headers: this.getHeader() });
   }
 
   deleteCity(cityId: number): Observable<any> {
-    return this.http.delete(`http://localhost:5000/api/cities/${cityId}`, { headers: this.getHeader(), observe: 'response' });
+    return this.http.delete(`${environment.apiUrl}/cities/${cityId}`, { headers: this.getHeader(), observe: 'response' });
   }
 
 }
