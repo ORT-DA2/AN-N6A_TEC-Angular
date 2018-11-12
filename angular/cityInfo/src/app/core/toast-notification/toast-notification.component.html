@@ -1,0 +1,32 @@
+<div class="toastNotification container">
+    <div *ngIf="message" [class]="messageClass" role="alert">
+        <div class="row">
+            <div class="col-11 ">
+                <p>{{message}}</p>
+            </div>
+            <div class="col-1 ">
+                <button class="btn btn-light" (click)="delete()">X</button>
+            </div>
+        </div>
+    </div>
+    <!--<div class="alert alert-success " role="alert ">
+        <div class="row ">
+            <div class="col-11 ">
+                <p>A simple success alert—check it out!</p>
+            </div>
+            <div class="col-1 ">
+                <button class="btn btn-light ">X</button>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-success " role="alert ">
+        <div class="row ">
+            <div class="col-11 ">
+                <p>A simple success alert—check it out!</p>
+            </div>
+            <div class="col-1 ">
+                <button class="btn btn-light ">X</button>
+            </div>
+        </div>
+    </div>-->
+</div>

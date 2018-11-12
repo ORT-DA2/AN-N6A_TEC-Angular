@@ -18,6 +18,7 @@ import { BaseApiService } from './service/base-api.service';
 import { LayoutComponent } from './layout/layout.component';
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CoreModule } from './core/core.module';
 
 const appRoutes: Routes = [
   {
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    CoreModule,
     // CityModule
   ],
   providers: [
