@@ -19,6 +19,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { AuthenticationGuard } from './shared/authentication.guard';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CoreModule } from './core/core.module';
+import { ConfigService } from './service/config.service';
 
 const appRoutes: Routes = [
   {
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
         path: 'city',
         loadChildren: './city/city.module#CityModule',
       },
+      { path: 'test', component: TestComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
@@ -64,7 +66,8 @@ const appRoutes: Routes = [
     SessionService,
     UserService,
     BaseApiService,
-    AuthenticationGuard
+    AuthenticationGuard,
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })
