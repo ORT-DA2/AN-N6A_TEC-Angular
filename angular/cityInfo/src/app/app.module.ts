@@ -30,8 +30,7 @@ const appRoutes: Routes = [
       {
         path: 'city',
         loadChildren: './city/city.module#CityModule',
-      },
-      { path: '', redirectTo: 'home', pathMatch: 'full' }
+      }
     ]
   },
   { path: 'login', component: LoginComponent },

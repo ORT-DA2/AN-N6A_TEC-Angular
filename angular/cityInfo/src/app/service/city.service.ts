@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { SessionService } from './session.service';
 import { environment } from '../../environments/environment';
+import { CityDto } from '../interfaces/city-dto.interface';
 
 export interface City {
   id: number;
@@ -44,6 +45,14 @@ export class CityService {
 
   deleteCity(cityId: number): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/cities/${cityId}`, { headers: this.getHeader(), observe: 'response' });
+  }
+
+  post(dto: CityDto): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/cities`, dto, { headers: this.getHeader(), observe: 'response' });
+  }
+
+  put(dto: CityDto): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/cities`, dto, { headers: this.getHeader(), observe: 'response' });
   }
 
 }

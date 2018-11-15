@@ -1,6 +1,12 @@
-<p>
+<!--<p>
     {{ cities | json }}
-</p>
+</p>-->
+<div class="row justify-content-end app-margin-bottom">
+    <div class="col-1">
+        <button type="button" class="btn btn-primary" (click)="addNewCity()">Add New</button>
+    </div>
+</div>
+
 <div class="table-responsive">
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -17,8 +23,8 @@
                 <td>{{ city.description | description : 50 }}</td>
                 <td>{{ city.numberOfPointsOfInterest }}</td>
                 <td>
-                    <input type="button" (click)="selectCity($event, city)" value="Edit" />
-                    <input type="button" (click)="deleteCity($event, city)" value="Delete" />
+                    <input type="button" class="btn btn-info" (click)="selectCity($event, city)" value="Edit" />
+                    <input type="button" class="btn btn-warning app-margin-left" (click)="deleteCity($event, city)" value="Delete" />
                 </td>
             </tr>
         </tbody>

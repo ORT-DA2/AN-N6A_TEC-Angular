@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { City, CityService } from '../../service/city.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { NotificationService } from 'src/app/core/notification.service';
+import { CitySyncService } from '../city-sync.service';
 
 @Component({
   selector: 'app-city-form',
@@ -20,7 +22,9 @@ export class CityFormComponent implements OnInit, OnChanges {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private cityService: CityService) {
+    private cityService: CityService,
+    private notificationService: NotificationService,
+    private syncService: CitySyncService) {
     /*this.cityForm = new FormGroup({
       name: new FormControl(''),
       description: new FormControl('')
@@ -46,32 +50,30 @@ export class CityFormComponent implements OnInit, OnChanges {
     ).subscribe(x => x ? this.updateForm(x) : this.cityForm.reset());
 
     console.log(`Using snapshot : ${this.route.snapshot.paramMap.get('id')}`);
+
+    this.updateForm(this.city);
   }
-
-
-  /**
-        [
-          this.fb.group({
-            name: [, Validators.required],
-            description: [, Validators.maxLength(25)]
-          })
-        ]
-   */
 
   ngOnChanges(changes: SimpleChanges) {
     // changes.prop contains the old and the new value...
     if (changes.city.currentValue) {
-      const c = changes.city.currentValue;
-      this.cityForm.patchValue({
-        id: c.id,
-        name: c.name,
-        description: c.description
-      });
+      this.updateForm(changes.city.currentValue);
+    }
+
+    if (changes.city && changes.city.currentValue === undefined) {
+      this.cityForm.reset();
     }
   }
 
   submit() {
-    console.log(this.cityForm.value);
+    if (+this.cityForm.get('id').value) {
+      this.edit();
+    } else {
+      this.cityForm.patchValue({
+        id: 0,
+      });
+      this.saveNew();
+    }
   }
 
   cancel() {
@@ -84,6 +86,28 @@ export class CityFormComponent implements OnInit, OnChanges {
       id: city.id,
       name: city.name,
       description: city.description,
+    });
+  }
+
+  private saveNew() {
+    this.cityService.post(this.cityForm.value).subscribe(response => {
+      this.syncService.notifyUpdate(true);
+      if (response.code === 200) {
+        this.notificationService.display({ message: 'City successfully added', severity: 'info' });
+      } else {
+        this.notificationService.display({ message: 'An error occur', severity: 'error' });
+      }
+    });
+  }
+
+  private edit() {
+    this.cityService.put(this.cityForm.value).subscribe(response => {
+      this.syncService.notifyUpdate(true);
+      if (response.code === 200) {
+        this.notificationService.display({ message: 'City successfully added', severity: 'info' });
+      } else {
+        this.notificationService.display({ message: 'An error occur', severity: 'error' });
+      }
     });
   }
 

@@ -10,6 +10,7 @@ import { CityDetailComponent } from './city-detail/city-detail.component';
 import { CityService } from '../service/city.service';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CitySyncService } from './city-sync.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CityMainComponent,
     CityDetailComponent],
   providers: [
-    CityService
+    CityService,
+    CitySyncService
   ],
   exports: [
     CityMainComponent

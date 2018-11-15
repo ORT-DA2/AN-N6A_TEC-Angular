@@ -15,3 +15,11 @@ body {
     border-left: 5px solid #a94442;
     /* red */
 }
+
+.app-margin-bottom {
+    margin-bottom: 1em;
+}
+
+.app-margin-left {
+    margin-left: 1em;
+}
