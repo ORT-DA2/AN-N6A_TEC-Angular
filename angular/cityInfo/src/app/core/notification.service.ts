@@ -14,4 +14,11 @@ export class NotificationService {
     display(notification: NotificationMessage) {
         this.messageIn.next(notification);
     }
+
+    clear() {
+        this.messageIn.next({
+            message: undefined,
+            severity: undefined
+        });
+    }
 }

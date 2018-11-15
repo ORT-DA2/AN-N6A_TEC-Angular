@@ -40,7 +40,7 @@ export class SessionService {
     }
 
     isAdmin(): boolean {
-        return localStorage.getItem('Role') === 'Admin';
+        return localStorage.getItem('role') === 'Admin';
     }
 
     logOff() {

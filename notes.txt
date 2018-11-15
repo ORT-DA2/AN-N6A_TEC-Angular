@@ -47,6 +47,13 @@ In src/styles.css add the following line:
 
 @import "~bootstrap/dist/css/bootstrap.css";
 
+-------
+fix deploy in IIS
+
+https://blog.angularindepth.com/deploy-an-angular-application-to-iis-60a0897742e7
+
+ ng build --base-href "/city/" --prod
+
 ----------------------
 backend
 

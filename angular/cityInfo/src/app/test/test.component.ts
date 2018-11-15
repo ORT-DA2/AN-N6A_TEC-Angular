@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CityService } from '../service/city.service';
+import { CityService, City } from '../service/city.service';
 import { Router } from '@angular/router';
 import { SessionService } from '../service/session.service';
-import { Subscription } from 'rxjs';
+import { Subscription} from 'rxjs';
+import { ConfigService } from '../service/config.service';
 
 @Component({
   selector: 'app-test',
@@ -20,7 +21,8 @@ export class TestComponent implements OnInit, OnDestroy {
   constructor(
     private cityService: CityService,
     private router: Router,
-    private sessionService: SessionService) {
+    private sessionService: SessionService,
+    private config: ConfigService) {
     this.default = 'Default';
     this.name = '';
     this.today = new Date();
@@ -38,6 +40,7 @@ export class TestComponent implements OnInit, OnDestroy {
   }
 
   resetText() {
+    console.log(this.config.data);
     this.default = 'Default';
     this.name = '';
   }
