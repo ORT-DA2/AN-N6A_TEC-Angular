@@ -31,13 +31,9 @@ const appRoutes: Routes = [
       {
         path: 'city',
         loadChildren: './city/city.module#CityModule',
-<<<<<<< HEAD
-      }
-=======
       },
       { path: 'test', component: TestComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
->>>>>>> f6845960a0f379c4dc1072d867b9437e5ed0a831
     ]
   },
   { path: 'login', component: LoginComponent },
