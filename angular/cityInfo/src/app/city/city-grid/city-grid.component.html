@@ -25,6 +25,7 @@
                 <td>
                     <input type="button" class="btn btn-info" (click)="selectCity($event, city)" value="Edit" />
                     <input type="button" class="btn btn-warning app-margin-left" (click)="deleteCity($event, city)" value="Delete" />
+                    <input type="button" class="btn btn-secondary app-margin-left" (click)="updatePic(city)" value="Update Pic" />
                 </td>
             </tr>
         </tbody>
@@ -32,3 +33,6 @@
 </div>
 
 <app-city-form *ngIf="isFormActive" (closeRequested)="closeForm($event)" [city]="selectedCity"></app-city-form>
+
+<app-city-photo *ngIf="isPicFormActive" [city]="selectedCity"></app-city-photo> 
+<!--<app-city-form *ngIf="isFormActive" (closeRequested)="closeForm($event)" [city]="selectedCity"></app-city-form>-->

@@ -55,4 +55,20 @@ export class CityService {
     return this.http.put(`${environment.apiUrl}/cities`, dto, { headers: this.getHeader(), observe: 'response' });
   }
 
+  postPic(cityId: number, fileToUpload: File): Observable<any> {
+
+    // important !!! do not set content type
+    const header = new HttpHeaders(
+      {
+        'Authorization': this.sessionService.getToken()
+      });
+
+    const formData: FormData = new FormData();
+    formData.append('image', fileToUpload, fileToUpload.name);
+    formData.append('cityId', '' + cityId);
+    formData.append('fileName', fileToUpload.name);
+    return this.http.post(`${environment.apiUrl}/cityimage`, formData, { headers: header });
+  }
+
+
 }

@@ -1,0 +1,16 @@
+<p>
+  city-photo works!
+</p>
+
+<div class="row">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label for="file">Choose File</label>
+          <input type="file"
+                 id="file"
+                 (change)="handleFileInput($event.target.files)">
+      </div>
+    <button type="submit"  class="btn btn-success">Submit </button>
+    <!--<i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>-->
+  </form>
+</div>

@@ -15,6 +15,7 @@ export class CityGridComponent implements OnInit, OnDestroy {
 
   selectedCity: City;
   isFormActive: boolean;
+  isPicFormActive: boolean;
   syncSubscription: Subscription;
 
   constructor(
@@ -53,8 +54,14 @@ export class CityGridComponent implements OnInit, OnDestroy {
     this.isFormActive = true;
   }
 
+  updatePic(city: City) {
+    this.selectedCity = city;
+    this.isPicFormActive = true;
+  }
+
   closeForm($event) {
     this.isFormActive = false;
+    this.isPicFormActive = false;
   }
 
   ngOnDestroy() {
