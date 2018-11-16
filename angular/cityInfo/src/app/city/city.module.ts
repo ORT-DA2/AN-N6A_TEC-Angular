@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CitySyncService } from './city-sync.service';
 import { CityPhotoComponent } from './city-photo/city-photo.component';
+import { CityCardsComponent } from './city-cards/city-cards.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { CityPhotoComponent } from './city-photo/city-photo.component';
     CityFormComponent,
     CityMainComponent,
     CityDetailComponent,
-    CityPhotoComponent],
+    CityPhotoComponent,
+    CityCardsComponent],
   providers: [
     CityService,
     CitySyncService

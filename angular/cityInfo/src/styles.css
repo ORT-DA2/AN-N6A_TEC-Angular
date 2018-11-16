@@ -23,3 +23,7 @@ body {
 .app-margin-left {
     margin-left: 1em;
 }
+
+.app-margin {
+    margin: 2em;
+}

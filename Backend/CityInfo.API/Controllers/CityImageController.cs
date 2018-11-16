@@ -47,7 +47,12 @@ namespace CityInfo.API.Controllers
             // TODO: why we need the include?
             var city = this.context.Cities.Include(c => c.Image).FirstOrDefault(c => c.Id == cityId);
 
-            return File(city.Image.Image, city.Image.ContentType);
+            if (city.Image != null)
+            {
+                return File(city.Image.Image, city.Image.ContentType);
+            }
+
+            return NotFound();
 
 
         }

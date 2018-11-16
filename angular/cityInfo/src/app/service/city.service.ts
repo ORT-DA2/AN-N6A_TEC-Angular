@@ -39,8 +39,8 @@ export class CityService {
   }
 
 
-  getCityImage(cityId: number): Observable<City[]> {
-    return this.http.get<any>(`${environment.apiUrl}/cityImage/${cityId}`, { headers: this.getHeader() });
+  getCityImage(cityId: number): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/cityImage/${cityId}`, { responseType: 'blob' });
   }
 
   deleteCity(cityId: number): Observable<any> {

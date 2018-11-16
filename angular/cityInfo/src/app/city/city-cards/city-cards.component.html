@@ -1,0 +1,5 @@
+<div class="container">
+  <div class="row" *ngFor='let city of cities | async'>
+    <app-city-detail class="col-1" [city]="city"></app-city-detail>
+  </div>
+</div>
